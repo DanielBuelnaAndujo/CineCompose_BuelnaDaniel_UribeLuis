@@ -6,7 +6,6 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import buelna.daniel.cinecompose_buelnadaniel_uribeluis.data.models.Pelicula
 import kotlin.random.Random
-import kotlin.random.nextInt
 
 class PeliculaViewModel : ViewModel() {
 
@@ -15,21 +14,28 @@ class PeliculaViewModel : ViewModel() {
         Pelicula("Son Como Niños 2", "Comedia", 70.0)
     )
 
-    var boletoComprado by mutableStateOf<Boolean>(false)
+    var boletoComprado by mutableStateOf(false)
         private set
 
-    var descuento by mutableStateOf<Int>(0)
+    var descuento by mutableStateOf(0)
         private set
 
     var seleccionado by mutableStateOf<Pelicula?>(null)
 
+    fun seleccionarPelicula(pelicula: Pelicula) {
+        seleccionado = pelicula
+        boletoComprado = false
+        descuento = 0
+    }
+
     fun comprarBoleto() {
-        val succes = (0..100).random()
-        if (succes > 50) {
+        val resultado = Random.nextInt(0, 101) // 0 a 100
+        if (resultado > 50) {
             boletoComprado = true
-            descuento = Random.nextInt(1, 100)
+            descuento = Random.nextInt(0, 101) // 0 a 100
         } else {
             boletoComprado = false
+            descuento = 0
         }
     }
 }
