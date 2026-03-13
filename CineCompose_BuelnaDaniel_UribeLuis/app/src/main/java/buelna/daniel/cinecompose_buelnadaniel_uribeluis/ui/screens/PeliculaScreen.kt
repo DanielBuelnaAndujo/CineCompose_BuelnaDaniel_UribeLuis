@@ -50,13 +50,21 @@ fun PeliculaScreen(viewModel: PeliculaViewModel) {
                         },
                     elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
                 ) {
-                    Column(modifier = Modifier.padding(16.dp)) {
+                    Column(
+                        modifier = Modifier.padding(16.dp)
+                    ) {
                         Text(
                             text = pelicula.nombre,
                             style = MaterialTheme.typography.titleMedium
                         )
-                        Text(text = "Género: ${pelicula.genero}")
-                        Text(text = "Costo: $${pelicula.costo}")
+                        Text(
+                            text = "Género: ${pelicula.genero}",
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                        Text(
+                            text = "Costo: $${pelicula.costo}",
+                            style = MaterialTheme.typography.bodyMedium
+                        )
                     }
                 }
             }
@@ -69,7 +77,9 @@ fun PeliculaScreen(viewModel: PeliculaViewModel) {
                 modifier = Modifier.fillMaxWidth(),
                 elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
             ) {
-                Column(modifier = Modifier.padding(16.dp)) {
+                Column(
+                    modifier = Modifier.padding(16.dp)
+                ) {
                     Text(
                         text = "Detalle de la película",
                         style = MaterialTheme.typography.titleLarge
@@ -92,25 +102,36 @@ fun PeliculaScreen(viewModel: PeliculaViewModel) {
 
                     Spacer(modifier = Modifier.height(12.dp))
 
-                    if (viewModel.boletoComprado) {
-                        Text(text = "Compra realizada")
+                    if (viewModel.intentoCompra) {
+                        if (viewModel.boletoComprado) {
+                            Text(
+                                text = "Compra realizada",
+                                style = MaterialTheme.typography.titleMedium
+                            )
 
-                        Text(text = "Descuento: ${viewModel.descuento}%")
+                            Text(
+                                text = "Descuento: ${viewModel.descuento}%"
+                            )
 
-                        if (viewModel.descuento == 100) {
-                            Text(text = "Precio final: Gratis")
+                            if (viewModel.descuento == 100) {
+                                Text(text = "Precio final: Gratis")
+                            } else {
+                                val precioFinal = pelicula.costo - (pelicula.costo * viewModel.descuento / 100.0)
+                                Text(text = "Precio final: $${"%.2f".format(precioFinal)}")
+                            }
                         } else {
-                            val precioFinal = pelicula.costo - (pelicula.costo * viewModel.descuento / 100.0)
-                            Text(text = "Precio final: $${"%.2f".format(precioFinal)}")
+                            Text(
+                                text = "Función agotada",
+                                style = MaterialTheme.typography.titleMedium
+                            )
                         }
-                    } else {
-                        Text(text = "Si no hay compra, puede ser función agotada")
                     }
                 }
             }
         }
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun PeliculaScreenPreview() {

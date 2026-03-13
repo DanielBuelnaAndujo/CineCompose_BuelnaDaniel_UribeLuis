@@ -22,17 +22,23 @@ class PeliculaViewModel : ViewModel() {
 
     var seleccionado by mutableStateOf<Pelicula?>(null)
 
+    var intentoCompra by mutableStateOf(false)
+        private set
+
     fun seleccionarPelicula(pelicula: Pelicula) {
         seleccionado = pelicula
         boletoComprado = false
         descuento = 0
+        intentoCompra = false
     }
 
     fun comprarBoleto() {
-        val resultado = Random.nextInt(0, 101) // 0 a 100
+        intentoCompra = true
+
+        val resultado = Random.nextInt(0, 101)
         if (resultado > 50) {
             boletoComprado = true
-            descuento = Random.nextInt(0, 101) // 0 a 100
+            descuento = Random.nextInt(0, 101)
         } else {
             boletoComprado = false
             descuento = 0
