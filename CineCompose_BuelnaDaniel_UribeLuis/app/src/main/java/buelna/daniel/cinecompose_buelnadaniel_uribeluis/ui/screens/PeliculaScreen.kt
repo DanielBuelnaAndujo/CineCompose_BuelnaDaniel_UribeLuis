@@ -136,6 +136,5 @@ fun PeliculaScreen(viewModel: PeliculaViewModel = viewModel()) {
 @Preview(showBackground = true)
 @Composable
 fun PeliculaScreenPreview() {
-    val viewModel = remember { PeliculaViewModel() }
-    PeliculaScreen(viewModel = viewModel)
+    PeliculaScreen()
 }
