@@ -115,7 +115,7 @@ fun PeliculaScreen(viewModel: PeliculaViewModel = viewModel()) {
                             )
 
                             if (viewModel.descuento == 100) {
-                                Text(text = "Precio final: Gratis")
+                                Text(text = "¡GRATIS!")
                             } else {
                                 val precioFinal = pelicula.costo - (pelicula.costo * viewModel.descuento / 100.0)
                                 Text(text = "Precio final: $${"%.2f".format(precioFinal)}")
