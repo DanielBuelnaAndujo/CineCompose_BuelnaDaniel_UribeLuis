@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import buelna.daniel.cinecompose_buelnadaniel_uribeluis.ui.navigation.AppNavigation
 import buelna.daniel.cinecompose_buelnadaniel_uribeluis.ui.screens.PeliculaScreen
 import buelna.daniel.cinecompose_buelnadaniel_uribeluis.ui.theme.CineCompose_BuelnaDaniel_UribeLuisTheme
 
@@ -20,7 +21,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             CineCompose_BuelnaDaniel_UribeLuisTheme {
-                PeliculaScreen()
+                AppNavigation()
             }
         }
     }
