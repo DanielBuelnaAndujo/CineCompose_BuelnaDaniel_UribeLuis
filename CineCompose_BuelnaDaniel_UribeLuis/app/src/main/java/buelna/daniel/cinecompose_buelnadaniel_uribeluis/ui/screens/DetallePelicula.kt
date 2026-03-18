@@ -72,8 +72,7 @@ fun DetallePelicula(
                             if (viewModel.descuento == 100) {
                                 Text(text = "¡GRATIS!")
                             } else {
-                                val precioFinal = pelicula.costo - (pelicula.costo * viewModel.descuento / 100.0)
-                                Text(text = "Precio final: $${"%.2f".format(precioFinal)}")
+                                Text(text = "Precio final: $${"%.2f".format(viewModel.precioFinal)}")
                             }
                         } else {
                             Text(
