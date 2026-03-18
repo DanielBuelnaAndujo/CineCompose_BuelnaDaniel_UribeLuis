@@ -21,6 +21,7 @@ class PeliculaViewModel : ViewModel() {
         private set
 
     var seleccionado by mutableStateOf<Pelicula?>(Pelicula("The Batman", "Accion", 70.0))
+        private set
 
     var intentoCompra by mutableStateOf(false)
         private set
@@ -29,10 +30,11 @@ class PeliculaViewModel : ViewModel() {
         seleccionado = pelicula
         boletoComprado = false
         descuento = 0
+        intentoCompra = false
     }
 
     fun comprarBoleto() {
-
+        intentoCompra = true
         val resultado = Random.nextInt(0, 101)
         if (resultado > 50) {
             boletoComprado = true

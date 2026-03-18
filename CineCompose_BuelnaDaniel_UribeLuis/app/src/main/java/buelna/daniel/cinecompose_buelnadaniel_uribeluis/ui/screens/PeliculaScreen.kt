@@ -23,7 +23,7 @@ import buelna.daniel.cinecompose_buelnadaniel_uribeluis.viewmodel.PeliculaViewMo
 
 @Composable
 fun PeliculaScreen(
-    viewModel: PeliculaViewModel = viewModel(),
+    viewModel: PeliculaViewModel,
     onClickPelicula: () -> Unit
 ) {
     Column(
@@ -80,5 +80,5 @@ fun PeliculaScreen(
 @Preview(showBackground = true)
 @Composable
 fun PeliculaScreenPreview() {
-    PeliculaScreen(onClickPelicula = {})
+    PeliculaScreen(onClickPelicula = {}, viewModel = viewModel())
 }

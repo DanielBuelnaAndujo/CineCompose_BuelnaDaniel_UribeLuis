@@ -20,7 +20,7 @@ import buelna.daniel.cinecompose_buelnadaniel_uribeluis.viewmodel.PeliculaViewMo
 
 @Composable
 fun DetallePelicula(
-    viewModel: PeliculaViewModel = viewModel()
+    viewModel: PeliculaViewModel
 ) {
     Column(
         modifier = Modifier
@@ -58,27 +58,29 @@ fun DetallePelicula(
 
                     Spacer(modifier = Modifier.height(12.dp))
 
-                    if (viewModel.boletoComprado) {
-                        Text(
-                            text = "Compra realizada",
-                            style = MaterialTheme.typography.titleMedium
-                        )
+                    if (viewModel.intentoCompra) {
+                        if (viewModel.boletoComprado) {
+                            Text(
+                                text = "Compra realizada",
+                                style = MaterialTheme.typography.titleMedium
+                            )
 
-                        Text(
-                            text = "Descuento: ${viewModel.descuento}%"
-                        )
+                            Text(
+                                text = "Descuento: ${viewModel.descuento}%"
+                            )
 
-                        if (viewModel.descuento == 100) {
-                            Text(text = "¡GRATIS!")
+                            if (viewModel.descuento == 100) {
+                                Text(text = "¡GRATIS!")
+                            } else {
+                                val precioFinal = pelicula.costo - (pelicula.costo * viewModel.descuento / 100.0)
+                                Text(text = "Precio final: $${"%.2f".format(precioFinal)}")
+                            }
                         } else {
-                            val precioFinal = pelicula.costo - (pelicula.costo * viewModel.descuento / 100.0)
-                            Text(text = "Precio final: $${"%.2f".format(precioFinal)}")
+                            Text(
+                                text = "Función agotada",
+                                style = MaterialTheme.typography.titleMedium
+                            )
                         }
-                    } else {
-                        Text(
-                            text = "Función agotada",
-                            style = MaterialTheme.typography.titleMedium
-                        )
                     }
                 }
             }
@@ -89,5 +91,5 @@ fun DetallePelicula(
 @Preview(showBackground = true)
 @Composable
 fun DetallePeliculaPreview() {
-    DetallePelicula()
+    DetallePelicula(viewModel())
 }
